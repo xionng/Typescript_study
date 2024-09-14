@@ -1,6 +1,8 @@
 import { Grid } from "semantic-ui-react";
 import styles from "./ItemList.module.css";
 import Link from "next/link";
+// a 태그또는 location을 이용하면 페이지가 새로고침되면서 이동함 -> 느려지고 요청 늘어남
+// next/link를 이용하면 페이지가 새로고침되지 않고 안의 내용물만 바뀜
 
 export default function ItemList({ list }) {
   return (

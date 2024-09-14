@@ -12,7 +12,7 @@ export default function Top() {
             style={{ display: "block", width: 80 }}
           />
         </div>
-        <Header as="h1">웰니스코치</Header>
+        <Header as="h1">Next.js 공부</Header>
       </div>
       <Gnb />
     </div>
