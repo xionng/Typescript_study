@@ -1,8 +1,8 @@
-import "@/styles/globals.css";
+// import "@/styles/globals.css";
 import "semantic-ui-css/semantic.min.css";
 import Footer from "../component/Footer";
 import Top from "../component/Top";
-import Home from ".";
+// import Home from ".";
 function App({ Component, pageProps }) {
   return (
     <div style={{ width: 1000, margin: "0 auto" }}>
