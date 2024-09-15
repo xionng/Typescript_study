@@ -1,55 +1,43 @@
-// import Image from "next/image";
-// import localFont from "next/font/local";
+import Axios from "axios";
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import Axios from "axios";
+import { Divider, Header } from "semantic-ui-react";
 import ItemList from "../component/ItemList";
-import { Header, Divider, Loader } from "semantic-ui-react";
-export default function Home() {
-  const [list, setList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+// import styles from "./styles/Home.module.css";
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
-  function getData() {
-    Axios.get(API_URL).then((res) => {
-      console.log(res.data);
-      setList(res.data);
-      setIsLoading(false);
-    });
-  }
-
-  useEffect(() => {
-    getData();
-  }, []);
-
+export default function Home({ list }) {
+  // 페이지가 바로 뜨기 때문에 로딩 화면 필요 없음
   return (
     <div>
       <Head>
         <title>HOME | 시온</title>
         <meta name="description" content="시온이의 홈"></meta>
       </Head>
-      {isLoading && (
-        <div style={{ padding: "300px 0" }}>
-          <Loader inline="centered" active>
-            Loading
-          </Loader>
-        </div>
-      )}
-      {!isLoading && (
-        <>
-          <Header as="h3" style={{ paddingTop: 40 }}>
-            베스트 상품
-          </Header>
-          <Divider />
-          <ItemList list={list.slice(0, 9)} />
-          <Header as="h3" style={{ paddingTop: 40 }}>
-            신상품
-          </Header>
-          <Divider />
-          <ItemList list={list.slice(9)} />
-        </>
-      )}
+      <>
+        <Header as="h3" style={{ paddingTop: 40 }}>
+          베스트 상품
+        </Header>
+        <Divider />
+        <ItemList list={list.slice(0, 9)} />
+        <Header as="h3" style={{ paddingTop: 40 }}>
+          신상품
+        </Header>
+        <Divider />
+        <ItemList list={list.slice(9)} />
+      </>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const apiUrl = process.env.apiUrl; // 클라이언트 환경이 아니기 때문에 NEXT_PUBLIC을 붙일 필요 없음 -> .env 파일 안에서도 추가
+  const res = await Axios.get(apiUrl);
+  const data = res.data;
+
+  return {
+    props: {
+      list: data,
+      name: process.env.name,
+    },
+  };
 }
