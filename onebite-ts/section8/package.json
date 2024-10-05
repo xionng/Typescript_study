@@ -1,0 +1,10 @@
+{
+  "name": "section8",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@types/node": "^22.7.0"
+  }
+}
