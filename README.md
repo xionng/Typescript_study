@@ -1,1 +1,1 @@
-# ReactNative_study
+# Typescript_study
